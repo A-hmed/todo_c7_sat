@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:todo_c7_sat/ui/screens/home/home.dart';
 import 'package:todo_c7_sat/utils/my_theme_data.dart';
 
 void main() {
@@ -26,6 +27,10 @@ class MyApp extends StatelessWidget {
         Locale('ar'),
       ],
       locale: Locale("en"),
+      routes: {
+        Home.routeName: (_)=>Home()
+      },
+      initialRoute: Home.routeName,
     );
   }
 }

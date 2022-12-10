@@ -1,16 +1,26 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_c7_sat/providers/listProvider.dart';
 import 'package:todo_c7_sat/ui/screens/home/tabs/list_tab/todo_item.dart';
-import 'package:todo_c7_sat/ui/screens/home/tabs/todo_dm.dart';
+import 'package:todo_c7_sat/model/todo_dm.dart';
+import 'package:todo_c7_sat/utils/Constants.dart';
 import 'package:todo_c7_sat/utils/my_theme_data.dart';
 
-class ListTab extends StatelessWidget {
+class ListTab extends StatefulWidget {
+  @override
+  State<ListTab> createState() => _ListTabState();
+}
 
-  
-  DateTime selectedDay = DateTime.now();
-  
+class _ListTabState extends State<ListTab> {
+
+
+  late ListProvider listProvider;
   @override
   Widget build(BuildContext context) {
+    listProvider = Provider.of(context);
+    if(listProvider.todos.isEmpty) listProvider.fetchTodosFromFireStore();
     return Container(
        child: Column(
          children: [
@@ -34,11 +44,11 @@ class ListTab extends StatelessWidget {
                    ],
                  ),
                  CalendarTimeline(
-                   initialDate: selectedDay,
-                   firstDate: selectedDay.subtract( Duration(days: 365)),
-                   lastDate: selectedDay.add(Duration(days:365)),
+                   initialDate: listProvider.selectedDay,
+                   firstDate: listProvider.selectedDay.subtract( Duration(days: 365)),
+                   lastDate: listProvider.selectedDay.add(Duration(days:365)),
                    onDateSelected: (date) {
-                     selectedDay = date;
+                     listProvider.changeSelected(date);
                    },
                    leftMargin: 20,
                    monthColor: Colors.white,
@@ -54,10 +64,9 @@ class ListTab extends StatelessWidget {
            Expanded(
              flex: 4,
                child: ListView.builder(
-                   itemCount: 10,
+                   itemCount: listProvider.todos.length,
                    itemBuilder: (_, index){
-                 return TodoItem(TodoDM(title: "Play basketball", description: "My Description",
-                     time: DateTime.now(), isDone: false), );
+                 return TodoItem(listProvider.todos[index]);
                }))
          ],
        ),

@@ -1,10 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_c7_sat/providers/listProvider.dart';
 import 'package:todo_c7_sat/ui/screens/home/home.dart';
 import 'package:todo_c7_sat/utils/my_theme_data.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  FirebaseFirestore.instance.settings =
+      Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);/// to unlimit cache size
+  await FirebaseFirestore.instance.disableNetwork(); /// to deal with local storage only
+
+  runApp(ChangeNotifierProvider(
+    create: (_)=> ListProvider(),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

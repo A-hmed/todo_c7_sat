@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "566616552035",
+    "project_id": "todo-online-c7",
+    "storage_bucket": "todo-online-c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566616552035:android:58a43de6c395dd00bffe56",
+        "android_client_info": {
+          "package_name": "com.route.todo_c7_sat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566616552035-8e7jhp3p46qf5hncbv1mro22dckfiqtp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD98bX6OXzl_PKagKNXEc6d1Qm3tD6jijE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566616552035-8e7jhp3p46qf5hncbv1mro22dckfiqtp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

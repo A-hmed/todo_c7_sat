@@ -14,14 +14,12 @@ class ListTab extends StatefulWidget {
 }
 
 class _ListTabState extends State<ListTab> {
-
-
   late ListProvider listProvider;
   @override
   Widget build(BuildContext context) {
     listProvider = Provider.of(context);
     if(listProvider.todos.isEmpty) listProvider.fetchTodosFromFireStore();
-    return Container(
+    return  Container(
        child: Column(
          children: [
            Expanded(

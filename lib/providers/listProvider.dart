@@ -8,6 +8,7 @@ class ListProvider extends ChangeNotifier {
   List<TodoDM> todos = [];
   DateTime selectedDay = DateTime.now();
 
+
   fetchTodosFromFireStore() async{
     var todosCollection = FirebaseFirestore.instance.collection(TodoDM.collecteionName);
     var query = await todosCollection.get();
@@ -32,7 +33,7 @@ class ListProvider extends ChangeNotifier {
     todos.sort((todo1, todo2){
       return todo1.time.compareTo(todo2.time);
     });
-  notifyListeners();
+    notifyListeners();
   }
 
   changeSelected(DateTime newDate){

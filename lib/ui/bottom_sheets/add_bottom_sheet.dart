@@ -98,8 +98,7 @@ class _AddBottomSheetState extends State<AddBottomSheet> {
       isDoneKey: false
     }).timeout(Duration(milliseconds: 500), onTimeout: (){
       listProvider.fetchTodosFromFireStore(); ///refresh
-       Navigator.pop(context); /// to close bottom sheet
+       Navigator.pop(context);/// to close bottom sheet
      });
-
   }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_c7_sat/ui/bottom_sheets/add_bottom_sheet.dart';
 import 'package:todo_c7_sat/ui/screens/home/tabs/list_tab/list_tab.dart';
 import 'package:todo_c7_sat/ui/screens/home/tabs/settings_tab.dart';
+
+import '../../../providers/listProvider.dart';
 
 class Home extends StatefulWidget {
    static String routeName = 'Home screen';
@@ -14,9 +17,10 @@ class _HomeState extends State<Home> {
    List<Widget> tabs = [ListTab(), SettingsTab()];
 
    int currentIndex = 0;
-
+  late ListProvider provider;
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("To Do List"),
